@@ -24,20 +24,21 @@
               <td>{{$cuenta->nombre}}</td>
               <td>{{$cuenta->apellido}}</td>
               <td> 
-                <a href="{{route('cuenta.editar', $cuenta->user)}}" class="btn btn-primary">
+                @if (Gate::allows('admin'))
+                  <a href="{{route('cuenta.editar', $cuenta->user)}}" class="btn btn-primary @if(Auth::user()->perfil_id==$cuenta->perfil_id) d-none @endif">
                     <span class="material-icons">
-                        edit
+                        edit  
                     </span>
-                </a>
+                  </a>
+                @endif
               </td>
               <td>
-               
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$cuenta->user}}">
+                @if (Gate::allows('admin'))
+                <button type="button" class="btn btn-danger @if(Auth::user()->perfil_id==$cuenta->perfil_id) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal{{$cuenta->user}}">
                     <span class="material-icons">
                         delete
                     </span> 
                 </button>
-
                 <div class="modal fade" id="exampleModal{{$cuenta->user}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -59,6 +60,7 @@
                     </div>
                 </div>
                 </div>
+                @endif
               </td>
             </tr>
             @endforeach

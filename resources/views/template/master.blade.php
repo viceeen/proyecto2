@@ -63,6 +63,13 @@
             <a class="nav-link" href="{{route('administrador.index')}}">Ver Perfiles</a>
           </li>
           @endif
+
+          @if (Gate::allows('admin'))
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('fotos.baneadas')}}">Ver Fotos Baneadas</a>
+          </li>
+          @endif
         </ul>
       </div>
     </nav>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imagenes;
+use App\Models\Cuentas;
 use Illuminate\Support\Facades\Storage;
 use App\File;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,9 @@ class ImagenController extends Controller
         $imagenes = Imagenes::all();
         return view('inicio.index',compact('imagenes'));
     }
-    public function baneadas()
+    public function baneadas(Cuentas $cuenta)
     {
-        return view('artista.baneadas');
+        return view('artista.baneadas',compact('cuenta'));
 
     }
 
@@ -90,6 +91,23 @@ class ImagenController extends Controller
 
     }
 
+    public function desbanear(Request $request, Imagenes $imagen)
+    {
+        $imagen ->baneada = False;
+        $imagen ->motivo_ban = 'no baneada';
+        $imagen->save();
+        return redirect()->route('home.index');
+
+
+    }
+    public function cambiarTitulo(Request $request, Imagenes $imagen)
+    {
+        $imagen->titulo = $request->titulo;
+        $imagen->save();
+        return redirect()->route('artista.perfil',compact('imagen'));
+
+
+    }
     /**
      * Remove the specified resource from storage.
      */

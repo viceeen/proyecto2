@@ -27,7 +27,11 @@ class ArtistaController extends Controller
     {  
         return view('artista.imagenes',compact('cuenta'));
     }
+    public function perfiles(Cuentas $cuenta)
+    {
+        return view('artista.imagenes',compact('cuenta'));
 
+    }
 
     /**
      * Show the form for creating a new resource.

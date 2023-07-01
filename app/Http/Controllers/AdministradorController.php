@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cuentas;
+use App\Models\Imagenes;
 
 class AdministradorController extends Controller
 {
@@ -18,8 +19,13 @@ class AdministradorController extends Controller
         $cuentas = Cuentas::orderBy('perfil_id')->get();
         return view('admin.perfiles',compact('cuentas'));
     }
+    public function fotosBaneadas(){
+        
+        $imagenes = Imagenes::all();
+        return view('admin.fotosbaneadas',compact('imagenes'));
 
-    /**
+    }
+        /**
      * Show the form for creating a new resource.
      */
     public function create()
