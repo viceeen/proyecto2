@@ -91,19 +91,44 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$imagen->titulo}}</h5>
                         <h6>@<span>{{$cuenta->user}}</span></h6>
-                        
                         <div class="col text-end">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$imagen->id}}">
+                            <button class="btn btn-danger " type="submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>   
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confimar borrado</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="POST" action="{{route('imagen.delete',$imagen->id)}}">
+                                @method('delete')
+                                @csrf
+                                <div class="modal-body">
+                                    ¿Esta seguro que quiere borrar la imagen?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1{{$imagen->id}}">
                                 <span class="material-icons">settings</span>
                             </button>
                         </div>
 
                         
-                        <div class="modal fade" id="exampleModal{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$imagen->id}}" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal1{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel1{{$imagen->id}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel{{$imagen->id}}">Cambiar titulo</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel1{{$imagen->id}}">Cambiar titulo</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -111,7 +136,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="mb-3">
-                                        <h5>¿Estas seguro que quieres cambiar el tiulo?</h5>
+                                        <h5>¿Estas seguro que quieres cambiar el titulo?</h5>
                                     </div>
                                     <div class="mb-3 text-center">
                                         <label for="titulo" class="form-label">Cambiar Titulo</label>
@@ -127,6 +152,7 @@
                             </div>
                         </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

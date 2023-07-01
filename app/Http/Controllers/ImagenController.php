@@ -95,7 +95,7 @@ class ImagenController extends Controller
     public function desbanear(Request $request, Imagenes $imagen)
     {
         $imagen ->baneada = False;
-        $imagen ->motivo_ban = 'no baneada';
+        $imagen ->motivo_ban = '';
         $imagen->save();
         return redirect()->route('home.index');
 
@@ -106,15 +106,16 @@ class ImagenController extends Controller
         $cuenta = Auth::user()->user;
         $imagen->titulo = $request->titulo;
         $imagen->save();
-        return redirect()->route('artista.perfil',compact('cuenta'));
+        return redirect()->route('home.index',compact('cuenta'));
 
 
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Imagenes $imagen)
     {
-        //
+        $imagen->delete();
+        return redirect()->route('artista.perfil',$imagen->cuenta_user);
     }
 }

@@ -41,4 +41,5 @@ Route::get('/inicio/baneadas',[AdministradorController::class,'fotosBaneadas'])-
 Route::put('/inicio/desbanear/{imagen}',[ImagenController::class,'desbanear'])->name('imagen.desbanear');
 Route::put('perfil/cambiarTitulo',[ImagenController::class,'cambiarTitulo'])->name('imagen.titulo');
 Route::get('/search', [HomeController::class,'search']);
+Route::delete('/perfi/delete/{imagen}',[ImagenController::class,'destroy'])->name('imagen.delete');
 

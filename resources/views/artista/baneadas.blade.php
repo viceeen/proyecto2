@@ -16,7 +16,7 @@
                 <div class="d-flex flex-row">
                     @if (Auth::user())
                     <div class="col">
-                        <h2>{{Auth::user()->nombre}} </h2>
+                        <h2>{{Auth::user()->user}} </h2>
                     </div>
                     @endif
                     <div class="col p-1">
@@ -49,12 +49,13 @@
     @foreach($cuenta->imagenes as $imagen)
         @if ($imagen->baneada)
                 <div class="col-4">
-                    <div class="card mb-3 mt-3" style="width: 350px; height: 350px;">
-                        <img src="{{ asset('storage/' . $imagen->archivo) }}" class="card-img-top" alt="...">
+                    <div class="card mb-3 mt-3">
+                        <img src="{{ asset('storage/' . $imagen->archivo) }}" class="card-img-top" alt="..." style="max-height: 400px; max-width: 470px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">{{$imagen->titulo}}</h5>
-                            <span>{{$imagen->motivo_ban}}</span>
                             <h6>@<span>{{$cuenta->user}}</span></h6>
+                            <br>
+                            Motivo ban: <span class="text-danger">{{$imagen->motivo_ban}}</span>
                         </div>
                     </div>
                 </div>
