@@ -18,6 +18,19 @@
     <nav class="col-md-2 d-none d-md-block bg-light sidebar" >
       <div class="sidebar-sticky">
       <br>
+      <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <form method="get" action="/search">
+                    <div class="input-group mb-3">
+                        <input class="form-control" name="search" placeholder="Ingrese nombre de usuario del artista a buscar" >
+                        <button class="btn btn-outline-secondary " type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      <br>
       <br>
       <br>
       <br>

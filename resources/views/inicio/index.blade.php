@@ -11,8 +11,8 @@
      
         @if (!$imagen->baneada)
         <div class="col-4">
-          <div class="card mb-3 mt-3" style="width: 350px; height: 350px;">
-            <img src="{{asset('storage/' . $imagen->archivo)}}" class="card-img-top" alt="">
+          <div class="card mb-3 mt-3" >
+            <img src="{{asset('storage/' . $imagen->archivo)}}" class="card-img-top " alt="" style="max-height: 400px; max-width: 470px; object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title">{{$imagen->titulo}}</h5>
               <h6>@<span>{{$imagen->cuenta_user}}</span></h6>

@@ -40,4 +40,5 @@ Route::get('/perfiles/{cuenta}',[ArtistaController::class,'perfiles'])->name('cu
 Route::get('/inicio/baneadas',[AdministradorController::class,'fotosBaneadas'])->name('fotos.baneadas');
 Route::put('/inicio/desbanear/{imagen}',[ImagenController::class,'desbanear'])->name('imagen.desbanear');
 Route::put('perfil/cambiarTitulo',[ImagenController::class,'cambiarTitulo'])->name('imagen.titulo');
+Route::get('/search', [HomeController::class,'search']);
 

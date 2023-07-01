@@ -47,18 +47,18 @@
 <hr>
 <div class="row">
     <div class="col-4">
-        <div class="card mt-3" style="width: 22rem;">
+        <div class="card mt-3" style=style="max-height: 400px; max-width: 470px; object-fit: cover;">
             <div class="card-body text-center">
-                <button class="btn text-secondary" type="button" data-bs-toggle="modal" data-bs-target="#subir_imagenes">
+                <button class="btn text-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <span class="material-icons" style="font-size: 18.5rem;">
                         add
                     </span>
                 </button>
-                <div class="modal fade" id="subir_imagenes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Subir Imagen</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel1">Subir Imagen</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -86,8 +86,8 @@
     @foreach($cuenta->imagenes as $imagen) 
         @if (!$imagen->baneada)
             <div class="col-4">
-                <div class="card mb-3 mt-3" style="width: 350px; height: 350px;">
-                    <img src="{{ asset('storage/' . $imagen->archivo) }}" class="img-thumbnail" alt="...">
+                <div class="card mb-3 mt-3" >
+                    <img src="{{ asset('storage/' . $imagen->archivo) }}" class="img-thumbnail" alt="..." style="max-height: 400px; max-width: 470px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{$imagen->titulo}}</h5>
                         <h6>@<span>{{$cuenta->user}}</span></h6>
@@ -99,7 +99,7 @@
                         </div>
 
                         
-                        <div class="modal fade" id="exampleModal{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal{{$imagen->id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$imagen->id}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">

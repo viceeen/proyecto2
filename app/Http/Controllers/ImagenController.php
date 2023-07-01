@@ -39,7 +39,7 @@ class ImagenController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Imagenes $imagen)
     {
 
         $imagen = new Imagenes();
@@ -55,9 +55,10 @@ class ImagenController extends Controller
         $imagen-> titulo = $request->titulo;
         $imagen-> archivo = $fileName;
         $imagen-> baneada = False;
-        $imagen-> motivo_ban = 'no';
+        $imagen-> motivo_ban = '';
         $imagen-> cuenta_user = Auth::user()->user;
         $imagen->save();
+        return redirect()->route('home.index',compact('imagen'));
 
 
     }
@@ -102,9 +103,10 @@ class ImagenController extends Controller
     }
     public function cambiarTitulo(Request $request, Imagenes $imagen)
     {
+        $cuenta = Auth::user()->user;
         $imagen->titulo = $request->titulo;
         $imagen->save();
-        return redirect()->route('artista.perfil',compact('imagen'));
+        return redirect()->route('artista.perfil',compact('cuenta'));
 
 
     }

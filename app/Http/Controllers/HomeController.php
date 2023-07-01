@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imagenes;
+use App\Models\Cuentas;
 
 
 class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ 
+    public function search(Request $request)
+    {
+        $search = $request->search;
 
+        $imagenes = Imagenes::where(function($query) use ($search){
+
+            $query->where('cuenta_user', 'like', "%$search%");
+        })
+        ->orWhereHas('cuenta', function($query) use ($search){
+            $query->where('user', 'like', "%$search%");
+        })
+        ->get();
+
+        return view('inicio.index', compact('imagenes', 'search'));
+    }
+    
     public function index()
     {
         $imagenes = Imagenes::all();
