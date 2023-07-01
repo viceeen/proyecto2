@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\http\Controllers\HomeController;
+use App\http\Controllers\ArtistaController;
+use App\http\Controllers\ImagenController;
+use App\http\Controllers\CuentaController;
+use App\http\Controllers\AdministradorController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+//Route::get('/', function () {
+  //  return view('welcome');
+//});
+Route::get('/', [HomeController::class,'index'])->name('home.index');
+Route::get('/login', [HomeController::class,'login'])->name('home.login');
+Route::get('/registrarse',[ArtistaController::class,'index'])->name('artista.index');
+Route::post('/registrarse', [ArtistaController::class,'store'])->name('artista.store');
+Route::get('/perfil/{cuenta}', [ArtistaController::class,'perfil'])->name('artista.perfil');
+Route::post('/subirImagen', [ImagenController::class,'store'])->name('imagen.store');
+//Route::get('/imagen', [ImagenController::class,'index'])->name('imagen.index');
+Route::post('/cuenta/login',[CuentaController::class,'autenticar'])->name('cuenta.autenticar');
+Route::get('/cuenta/logout',[CuentaController::class,'logout'])->name('usuarios.logout');
+Route::get('/perfiles',[AdministradorController::class,'index'])->name('administrador.index');
+Route::put('/perfiles/editar/{cuenta}',[CuentaController::class,'update'])->name('cuenta.update');
+Route::get('/perfiles/editar/{cuenta}',[CuentaController::class,'editar'])->name('cuenta.editar');
+Route::delete('/perfiles/delete/{cuenta}',[CuentaController::class,'destroy'])->name('cuenta.delete');
+Route::put('/inicio/banear/{imagen}',[ImagenController::class,'update'])->name('imagen.update');
+Route::get('/perfil/fotos/baneadas/{cuenta}',[ImagenController::class,'baneadas'])->name('baneadas.index');
